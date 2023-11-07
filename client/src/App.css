@@ -1,0 +1,18 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Landing page container */
+  .landing-page {
+    text-align: center;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #333333;
+    color: #fff;
+    padding: 20px;
+  }
+  
