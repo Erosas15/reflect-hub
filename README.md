@@ -1,6 +1,6 @@
 # ReflectHub
 
-This app will take in infomration for user and utlize GBT to provide information and resources about mental health to stay mentally healthy
+This app will take in information from user and utlize GBT to provide information and resources about mental health to stay mentally healthy
 
 
 ## Features
