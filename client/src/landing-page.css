@@ -1,0 +1,41 @@
+body {
+    background-color: rgb(192, 10, 10); /* Replace with your desired background color */
+    margin: 0; /* Remove default margin to ensure the color covers the entire page */
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    width: 600px;
+    background: #bc452d;
+    padding: 50px 50px;
+    border-radius: 10px;
+    
+    font-size: 100px;
+    font-family: Georgia;
+    text-align: center;
+}
+
+.intro-text{
+    font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.login-btn{
+    border: 2px solid black;
+    border-radius: 40px;
+    background-color: white;
+    color: black;
+    padding: 10px 0px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-btn:hover{
+    background-color:rgb(221, 187, 187);
+}
