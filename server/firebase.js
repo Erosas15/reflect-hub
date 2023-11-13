@@ -1,4 +1,5 @@
 const { initializeApp } = require("firebase/app");
+import {getDatabase, onValue, ref, set} from "firebase/database";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -14,5 +15,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+export const db = getDatabase();
 
-return { app };
+
+return { app};
