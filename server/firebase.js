@@ -1,21 +1,17 @@
 const { initializeApp } = require("firebase/app");
-import {getDatabase, onValue, ref, set} from "firebase/database";
+const admin = require("firebase-admin");
+const { firebaseAPIConfig, firebaseServiceConfig } = require("./config.json");
+const { getFirestore } = require("firebase/firestore");
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyA2DSgMfXYtXsAd2LGacZ2UylUI2dgpG-o",
-  authDomain: "reflect-hub.firebaseapp.com",
-  databaseURL: "https://reflect-hub-default-rtdb.firebaseio.com",
-  projectId: "reflect-hub",
-  storageBucket: "reflect-hub.appspot.com",
-  messagingSenderId: "676115168909",
-  appId: "1:676115168909:web:086a66cffd76304a6f6cc4",
-  measurementId: "G-9JC2VBK1QB",
-};
+// Initialize the client-side Firebase App
+const clientApp = initializeApp(firebaseAPIConfig);
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const db = getDatabase();
+// Initialize the server-side Firebase Admin SDK
+const adminApp = admin.initializeApp({
+  credential: admin.credential.cert(firebaseServiceConfig),
+  databaseURL: firebaseAPIConfig.databaseURL,
+});
 
+const db = getFirestore();
 
-return { app};
+module.exports = { clientApp, adminApp, db };
