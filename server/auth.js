@@ -1,53 +1,70 @@
-const { app } = require("./firebase");
-const { getAuth, createUserWithEmailAndPassword } = require("firebase/auth");
-const { getAuthForSignIn, signInWithEmailAndPassword } = require("firebase/auth");
-const { getAuthForSignOut, signOut } = require("firebase/auth");
-
+const { app, db } = require("./firebase");
+const { pushToDB } = require("./userdb");
+const { encryptName, decryptName } = require("./encrypt");
+const admin = require("firebase-admin");
+const {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} = require("firebase/auth");
 
 const auth = getAuth(app);
+
 // Function to handle user signup
-const handleSignUp = async (email, password) => {
+const handleSignUp = async (name, email, password) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
+
     const user = userCredential.user;
-    console.log("User signed up:", user);
-    // You can perform additional actions here, like sending a verification email.
+    userData = {
+      name: encryptName(name),
+      email: encryptName(email),
+    };
+    pushToDB((userID = user.uid), (userData = userData));
+
+    return user;
   } catch (error) {
     console.error("Error signing up:", error.message);
-    // Handle error, e.g., display a user-friendly message to the user.
+    return null;
   }
 };
 
+// Function to handle user sign-in
 const handleSignIn = async (email, password) => {
   try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
     const user = userCredential.user;
     console.log("User signed in:", user.email);
     // You can redirect or perform additional actions after successful sign-in.
+    return user;
   } catch (error) {
     console.error("Error signing in:", error.message);
-    // Handle error, e.g., display a user-friendly message to the user.
+    return null;
   }
 };
 
-const handleSignOut = async () => {
+const handleSignOut = async (uid) => {
   try {
-    await signOut(auth);
-    console.log("User signed out");
-    // You can redirect or perform additional actions after successful sign-out.
+    // Revoke the refresh tokens for the specified user
+    await admin.auth().revokeRefreshTokens(uid);
+
+    // Inform the user that they have been signed out
+    console.log(`User with UID ${uid} has been signed out.`);
   } catch (error) {
-    console.error("Error signing out:", error.message);
-    // Handle error, e.g., display a user-friendly message to the user.
+    // Handle the error if it is an auth error
+    if (error instanceof admin.auth.AuthError) {
+      console.error(`Error signing out user: ${error}`);
+    } else {
+      // Handle other types of errors
+      console.error(`Unexpected error: ${error}`);
+    }
   }
 };
-
-// Example usage:
-const email = "test@email.com";
-const password = "examplepassword";
-
-// Call the signup function
-handleSignOut();
