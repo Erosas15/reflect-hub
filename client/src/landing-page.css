@@ -1,5 +1,11 @@
 body {
-    background-color: rgb(192, 10, 10); /* Replace with your desired background color */
+    /*background-color: rgb(192, 10, 10); /* Replace with your desired background color */
+    background: url(https://images.inc.com/uploaded_files/image/1920x1080/getty_486848528_359104.jpg) no-repeat center center fixed; 
+    /* another good option: https://www.wethinktwice.acf.hhs.gov/sites/default/files/2021-05/Transfer_MH%20stats_0.gif */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     margin: 0; /* Remove default margin to ensure the color covers the entire page */
 }
 
@@ -10,11 +16,17 @@ body {
     margin-top: 100px;
     margin-bottom: 100px;
     width: 600px;
-    background: #bc452d;
+    background: rgb(236, 71, 56);
     padding: 50px 50px;
-    border-radius: 10px;
-    
-    font-size: 100px;
+    border-radius: 50px;
+    border-style: double;
+
+    font-family: Georgia;
+    text-align: center;
+}
+
+h1{
+    font-size: 50px;
     font-family: Georgia;
     text-align: center;
 }
@@ -24,6 +36,9 @@ body {
     margin-top: 10px;
     margin-bottom: 20px;
     text-align: center;
+
+    border-style: solid none solid none;
+    padding: 40px;
 }
 
 .login-btn{
