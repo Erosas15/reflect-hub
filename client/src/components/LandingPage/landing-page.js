@@ -3,18 +3,12 @@ import ReactDOM from 'react-dom'
 import './landing-page.css'
 
 // Pages
-import LoginSignup from './login-signup';
-import Journal from './journal';
+// import LoginSignup from '../Login-Signup/login-signup';
+// import Journal from '../Journal/journal';
 
 const LandingPage = () => {
     const handleClick = () => {
-        console.log("Sent to login");
-        ReactDOM.render(
-          <React.StrictMode>
-            <Journal />
-          </React.StrictMode>,
-          document.getElementById('root')
-        );
+      window.location.href = "login-signup"
     }
 
   return (
