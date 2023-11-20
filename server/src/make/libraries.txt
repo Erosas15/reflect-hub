@@ -1,0 +1,13 @@
+# server
+express
+cors
+
+# firebase
+firebase
+firebase-admin
+
+# chatbot
+openai
+langchain
+fs
+csv-parser
