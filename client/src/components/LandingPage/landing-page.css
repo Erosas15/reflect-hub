@@ -6,29 +6,7 @@ body {
     background-color: #E4E4E4;
 }
 
-.header{
-    background-color: #AEDFF7;
-    color: #333333;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-.sign-in-btn{
-    background-color: white;
-    color:#333333;
-    padding: 15px 25px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-right: 10px;
-    font-size: 15px;
-}
-
-.header .sign-in-btn {
-    margin-left: auto;
-  }
 
 .page-body {
     display: flex;
@@ -69,13 +47,5 @@ h1 {
     font-size: 20px;
 }
 
-.footer {
-    background-color: #AEDFF7;
-    color: #333333;
-    padding: 15px;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
+
   

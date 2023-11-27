@@ -2,24 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import './landing-page.css'
 
-import Header_component from '../Header/header';
-
-
-const Header = () => {
-  return(
-    <div className = 'header'>
-      <button className='sign-in-btn'>Login</button>
-    </div>
-  );
-};
-
-const Footer = () => {
-  return (
-    <footer className = 'footer'>
-      @ 2023 ReflectHub. All rights reserved.
-    </footer>
-  );
-};
+import Header from '../Header/header';
+import Footer from '../Footer/footer';
 
 const LandingPage = () => {
     const handleClick = () => {
