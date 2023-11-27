@@ -23,7 +23,6 @@ const LoginSignup = () => {
 
     return (
         <div className='page'>
-            <Header/>
             <div className='container'>
                 <div className='login_header'>
                     <div className='signin_text'>{action}</div>

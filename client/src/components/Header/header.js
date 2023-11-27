@@ -1,11 +1,16 @@
 import './header.css';
 
-const Header = () => {
-    return(
-      <div className = 'header'>
-        <button className='sign-in-btn'>Login</button>
-      </div>
-    );
-  };
+const Header = ({ isSignedIn, onSignOut, onSignInClick }) => {
+  return (
+    <div className='header'>
+      {isSignedIn ? (
+        <button className='sign-in-btn' onClick={onSignOut}>Sign Out</button>
+      ) : (
+        <button className='sign-in-btn' onClick={onSignInClick}>Sign In</button>
+      )}
+    </div>
+  );
+};
+
 
 export default Header;
