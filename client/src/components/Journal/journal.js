@@ -1,17 +1,24 @@
-// Journal.js
-import React from 'react';
-import { useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import {React, useState} from 'react';
+import { useNavigate,Route,Routes,Link, useParams } from 'react-router-dom';
+
 import Header from '../Header/header';
 import Footer from '../Footer/footer';
 import './journal.css'
 
-const NewJournalEntry = () => (
-  <Link to="/edit/new" className="new-journal-entry">
-    <h3>Create New Journal</h3>
-    <div>+</div>
-  </Link>
-);
+const NewJournalEntry = () => {
+  const navigate = useNavigate();
+
+  const handleCreatenew = () => {
+    navigate('edit/new');
+  };
+
+  return(
+    <div className='new-journal-entry' onClick={handleCreatenew}>
+      <h3>Create New Journal</h3>
+      <div>+</div>
+    </div>
+  )
+}
 
 const JournalEntry = ({ title, content, date, id }) => (
   <Link to={`/edit/${id}`} className="journal-entry">
@@ -24,30 +31,40 @@ const JournalEntry = ({ title, content, date, id }) => (
 );
 
 const JournalEditor = ({ match, history, onSave, title: initialTitle, content: initialContent }) => {
+  const {id} = useParams();
   const [title, setTitle] = useState(initialTitle);
   const [content, setContent] = useState(initialContent);
 
+  const isCreatingNew = id ==='new';
+
   const handleSave = () => {
     // Add logic to save the edited journal entry to Firebase
-    onSave({ title, content });
-    history.push('/');
+    //onSave({ title, content });
+    //history.push('/');
   };
 
   return (
     <div className="journal-editor-container">
-      <h2>Edit Journal Entry</h2>
+      <h2>{isCreatingNew ? 'Create New Journal Entry' : 'Edit Journal Entry'}</h2>
       <label className="journal-editor-label">Title:</label>
       <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="journal-editor-input" />
-      <label className="journal-editor-label">Content:</label>
-      <textarea value={content} onChange={(e) => setContent(e.target.value)} className="journal-editor-textarea" />
+
       <div className="journal-editor-buttons">
-        <button onClick={handleSave}>Save</button>
-        <Link to="/">
+        <button onClick={handleSave}>{isCreatingNew ? 'Create' : 'Save'}</button>
+        <Link to="/journal">
           <button>Cancel</button>
         </Link>
       </div>
+      
+      <label className="journal-editor-label">Content:</label>
+
+      <textarea value={content} onChange={(e) => setContent(e.target.value)} className="journal-editor-textarea" />
+      
+      
+
     </div>
   );
+
 };
 
 const JournalPage = ({ journalEntries }) => (
