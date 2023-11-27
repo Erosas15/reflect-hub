@@ -1,56 +1,82 @@
 body {
-    /*background-color: rgb(192, 10, 10); /* Replace with your desired background color */
-    background: url(https://images.inc.com/uploaded_files/image/1920x1080/getty_486848528_359104.jpg) no-repeat center center fixed; 
-    /* another good option: https://www.wethinktwice.acf.hhs.gov/sites/default/files/2021-05/Transfer_MH%20stats_0.gif */
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    margin: 0; /* Remove default margin to ensure the color covers the entire page */
+    margin:0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: #333333;
+    background-color: #E4E4E4;
+
 }
 
 .header{
+    background-color: #AEDFF7;
+    color: #333333;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sign-in-btn{
+    background-color: white;
+    color:#333333;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+.header .sign-in-btn {
+    margin-left: auto;
+  }
+
+.page-body {
     display: flex;
     flex-direction: column;
-    margin: auto;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    width: 600px;
-    background: rgb(236, 71, 56);
-    padding: 50px 50px;
-    border-radius: 50px;
-    border-style: double;
-
-    font-family: Georgia;
-    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
-
-h1{
-    font-size: 50px;
-    font-family: Georgia;
+  
+.intro-text {
     text-align: center;
-}
-
-.intro-text{
+    max-width: 600px; 
+    margin: 20px; 
     font-size: 25px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+}
+  
+h1 {
+    font-family: 'Roboto', sans-serif; 
     text-align: center;
-
-    border-style: solid none solid none;
-    padding: 40px;
+    font-weight: 900; 
+    font-size: 80px; 
+    color: #333333; 
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+    transform: skew(-10deg); 
+    -webkit-background-clip: text; 
+    background-clip: text; 
+    transition: transform 0.3s ease-in-out; 
+    display: inline-block;
 }
 
 .login-btn{
-    border: 2px solid black;
-    border-radius: 40px;
-    background-color: white;
-    color: black;
-    padding: 10px 0px;
-    font-size: 16px;
+    background-color: #AEDFF7;
+    color: #333333;
+    padding: 25px 60px;
+    border: none;
+    border-radius: 20px;
     cursor: pointer;
+    font-size: 20px;
 }
 
-.login-btn:hover{
-    background-color:rgb(221, 187, 187);
-}
+.footer {
+    background-color: #AEDFF7;
+    color: #333333;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
