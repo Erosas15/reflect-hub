@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import './login-signup.css';
-
-import Header from '../Header/header';
 import Footer from '../Footer/footer';
-
 
 const LoginSignup = () => {
     const [action, setAction] = useState('Login');
