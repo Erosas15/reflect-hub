@@ -22,9 +22,15 @@ body {
   .content {
     height: 400px;
     border: 2px solid #000000;
-    padding: 10px;
+    padding-top: 2px;
+    padding-left: 80px;
     overflow-y: auto;
-    font-size: 16px;
+    font-size: 43px;
+    background-image: url(https://i.pinimg.com/736x/74/d7/0d/74d70df93c38859392e86573a0f7ca0b.jpg);
+    background-position-x: -10px;
+    background-position-y: -28px;
+    background-size: 1000px;
+    background-attachment: local;
   }
   
   .save-button {
