@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './journal.css';
 
-const LandingPage = () => {
+const Journal = () => {
   const [content, setContent] = useState('');
 
   const handleContentChange = (event) => {
@@ -25,6 +25,6 @@ const LandingPage = () => {
   );
 };
 
-ReactDOM.render(<LandingPage />, document.getElementById('root'));
+ReactDOM.render(<Journal />, document.getElementById('root'));
 
-export default LandingPage;
+export default Journal;
