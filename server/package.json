@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "build": "npm install fs && npm install child_process && node src/make/package-installer.js ",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "firebase": "^10.6.0",
+    "firebase-admin": "^11.11.0",
+    "fs": "^0.0.1-security",
+    "langchain": "^0.0.194"
+  }
+}
