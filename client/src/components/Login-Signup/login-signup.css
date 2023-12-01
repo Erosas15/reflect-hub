@@ -1,5 +1,4 @@
 body {
-    background-color: #1b1513; /* Replace with your desired background color */
     margin: 0; /* Remove default margin to ensure the color covers the entire page */
 }
 
@@ -7,10 +6,10 @@ body {
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 150px;
+    margin-top: 80px;
     margin-bottom: 150px;
     width: 600px;
-    background: #bc452d;
+    background: #AEDFF7;
     padding: 30px;
     border-radius: 20px;
 }
@@ -25,7 +24,7 @@ body {
 }
 
 .signin_text{
-    color: #1b1513;
+    color: #333333;
     font-size: 35px;
     font-weight: 500;
 }
@@ -43,7 +42,7 @@ body {
     margin: auto;
     width: 400px;
     height: 50px;
-    background: #b3b3a5;
+    background: #E4E4E4;
     border-radius: 12px;
 }
 
@@ -61,13 +60,13 @@ body {
 .formSwitch{
     padding-left: 100px;
     margin-top: 20px;
-    color: #1b1513;
+    color: #333333;
     font-size: 20px;
     gap: 20px;
 }
 
 .formSwitch span{
-    color: #b3b3a5;
+    color: #333333;
     text-decoration: underline;
     cursor: pointer;
 }
@@ -90,6 +89,6 @@ body {
 }
 
 .gray {
-    color: #b3b3a5;
-    background-color: #1b1513;
+    color: #E4E4E4;
+    background-color: #333333;
 }

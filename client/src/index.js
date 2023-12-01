@@ -1,10 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import LandingPage from './landing-page';
+import * as ReactDOMClient from 'react-dom/client';
+import {BrowserRouter} from "react-router-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <LandingPage />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import App from './components/App/App'
+
+
+const container = document.getElementById('root');
+//create a root
+const root = ReactDOMClient.createRoot(container);
+
+//initial render: render an element to the root
+root.render(
+  <BrowserRouter>
+    <App/>
+  </BrowserRouter>
+)
+
+
