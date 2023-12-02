@@ -12,7 +12,7 @@ moduleAlias.addAliases({
 const authRoutes = require("@routes/auth");
 
 const app = express();
-const port = 8000;
+const port = 3001;
 
 app.use(express.json());
 app.use(cors());
