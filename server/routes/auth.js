@@ -1,9 +1,9 @@
 const express = require("express");
 const {
   handleSignIn,
-  handleSignOut,
   handleSignUp,
-} = require("./src/authService");
+  handleSignOut,
+} = require("@src/authService/authService");
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ const router = express.Router();
 router.post("/api/signup", async (req, res) => {
   const { name, email, password } = req.body;
   try {
-    const user = await handleSignUp(name, email, password);
+    const user = await handleSignUp(name, email, password); // Import handleSignUp
     if (user) {
       res.json({ success: true, user });
     } else {
@@ -31,7 +31,7 @@ router.post("/api/signin", async (req, res) => {
     if (user) {
       res.json({ success: true, user });
     } else {
-      res.status(401).json({ success: false, error: "Invalid credentials" });
+      res.status(500).json({ success: false, error: "Invalid credentials" });
     }
   } catch (error) {
     console.error("Error during sign-in:", error.message);

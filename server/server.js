@@ -1,6 +1,15 @@
 const express = require("express");
 const cors = require("cors");
-const authRoutes = require("./routes/auth");
+const path = require("path");
+const moduleAlias = require("module-alias");
+
+// Define aliases
+moduleAlias.addAliases({
+  "@src": path.join(__dirname, "src"),
+  "@routes": path.join(__dirname, "routes"),
+});
+
+const authRoutes = require("@routes/auth");
 
 const app = express();
 const port = 8000;

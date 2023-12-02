@@ -1,7 +1,7 @@
-const { app } = require("../src/firebase");
-const { pushToDB } = require("../src/userdb");
-const { encryptName } = require("../src/encrypt");
+const { app, db } = require("@src/firebase");
+const { encryptName } = require("@src/utils/encrypt");
 const { getAuth, createUserWithEmailAndPassword } = require("firebase/auth");
+const { doc, setDoc } = require("firebase/firestore");
 
 const auth = getAuth(app);
 
@@ -18,7 +18,16 @@ const handleSignUp = async (name, email, password) => {
       name: encryptName(name),
       email: encryptName(email),
     };
-    pushToDB((userID = user.uid), (userData = userData));
+
+    const colRef = collection(db, "users");
+    const users = doc(colRef, user.uid);
+
+    try {
+      // Use setDoc to set the data in the document
+      await setDoc(users, userData);
+    } catch (error) {
+      console.error("Error adding document:", error.message);
+    }
 
     return user;
   } catch (error) {

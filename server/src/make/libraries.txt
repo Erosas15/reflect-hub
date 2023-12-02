@@ -1,6 +1,8 @@
 # server
 express
 cors
+module-alias
+path
 
 # firebase
 firebase
@@ -11,3 +13,4 @@ openai
 langchain
 fs
 csv-parser
+d3-dsv@2
