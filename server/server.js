@@ -14,8 +14,15 @@ const authRoutes = require("@routes/auth");
 const app = express();
 const port = 3001;
 
+
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  methods: 'GET, HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}
+
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Attach route handlers
 app.use("/auth", authRoutes);
