@@ -1,6 +1,6 @@
 const { OpenAI } = require("langchain/llms/openai");
 const { CSVLoader } = require("langchain/document_loaders/fs/csv");
-const { openAIConfig } = require("../../config.json");
+const { openAIConfig } = require("config.json");
 
 const main = async () => {
   const model = new OpenAI({ openAIApiKey: openAIConfig.apiKey });

@@ -1,4 +1,4 @@
-const { db } = require("../firebase");
+const { db } = require("@src/firebase");
 const { collection, addDoc } = require("firebase/firestore");
 
 const sendMessage = async (senderId, receiverId, content) => {
@@ -17,6 +17,10 @@ const sendMessage = async (senderId, receiverId, content) => {
   }
 };
 
-sendMessage("k2tefNYNW2QnnHTkZJwZJ3DW5yt2", "hhTWJ5xrRGMP94qdZW5oyrQ79S62", "test #2")
+sendMessage(
+  "k2tefNYNW2QnnHTkZJwZJ3DW5yt2",
+  "hhTWJ5xrRGMP94qdZW5oyrQ79S62",
+  "test #2"
+);
 
 module.exports = sendMessage;

@@ -1,9 +1,7 @@
-const { app, db } = require("@src/firebase");
-const { encryptName } = require("@src/utils/encrypt");
-const { getAuth, createUserWithEmailAndPassword } = require("firebase/auth");
-const { doc, setDoc, collection, addDoc, getDocs, query, where, orderBy, serverTimestamp } = require("firebase/firestore");
+const getMessages = require("./getMessages");
+const sendMessage = require("./sendMessage");
 
 module.exports = {
-    getMessages,
-    sendMessage,
+  getMessages,
+  sendMessage,
 };
