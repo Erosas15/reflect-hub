@@ -1,7 +1,7 @@
-const { app } = require("@src/firebase");
+const { clientApp } = require("@src/firebase");
 const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
 
-const auth = getAuth(app);
+const auth = getAuth(clientApp);
 
 // Function to handle user sign-in
 const handleSignIn = async (email, password) => {
@@ -20,5 +20,4 @@ const handleSignIn = async (email, password) => {
     return null;
   }
 };
-
 module.exports = handleSignIn;

@@ -1,9 +1,9 @@
-const { app, db } = require("@src/firebase");
+const { clientApp, db } = require("@src/firebase");
 const { encryptName } = require("@src/utils/encrypt");
 const { getAuth, createUserWithEmailAndPassword } = require("firebase/auth");
-const { doc, setDoc } = require("firebase/firestore");
+const { doc, setDoc, collection } = require("firebase/firestore");
 
-const auth = getAuth(app);
+const auth = getAuth(clientApp);
 
 const handleSignUp = async (name, email, password) => {
   try {
@@ -14,6 +14,7 @@ const handleSignUp = async (name, email, password) => {
     );
 
     const user = userCredential.user;
+
     userData = {
       name: encryptName(name),
       email: encryptName(email),
@@ -35,5 +36,7 @@ const handleSignUp = async (name, email, password) => {
     return null;
   }
 };
+
+handleSignUp("");
 
 module.exports = handleSignUp;
