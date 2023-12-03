@@ -1,29 +1,32 @@
-import React, { useState } from 'react';
 import ReactDOM from 'react-dom'
 import './landing-page.css'
 
 import Header from '../Header/header';
 import Footer from '../Footer/footer';
 
-const LandingPage = () => {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+
+
+const LandingPage = ({isSignedIn,setIsSignedIn}) => {
 
   const handleSignInClick = () => {
     window.location.href = "login-signup";
   };
 
-  const handleSignOut = () => {
+  const handleSignOutClick = () => {
     // Perform sign-out logic
     setIsSignedIn(false);
   };
 
+  console.log(isSignedIn);
 
   return (
     <div>
+
+
       <Header
         isSignedIn={isSignedIn}
         onSignInClick={handleSignInClick}
-        onSignOut={handleSignOut}/>
+        onSignOut={handleSignOutClick}/>
 
       <div className='page-body'>
         <h1>ReflectHub</h1>

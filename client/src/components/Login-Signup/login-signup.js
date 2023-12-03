@@ -1,21 +1,48 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './login-signup.css';
 import Footer from '../Footer/footer';
 
 const LoginSignup = () => {
     const [action, setAction] = useState('Login');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
+    
     const handleFormSwitch = () => {
         setAction((prevAction) => (prevAction === 'Login' ? 'Sign Up' : 'Login'));
     };
 
-    const handleFormSubmit = () => {
-        // Placeholder for future Firebase integration
-        if (action === 'Login') {
-            // Handle login logic
-        } else {
-            // Handle signup logic
+    const handleFormSubmit = async() => {
+        try {
+
+            const config = {
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            };
+    
+
+            if (action ==='Login'){
+                const response = await axios.post('http://localhost:3001/auth/api/signin',
+                {email,password}, config);
+
+                sessionStorage.setItem('user', JSON.stringify(response.data.user));
+
+                console.log(response.data);
+            }else {
+                const response = await axios.post('http://localhost:3001/auth/api/signup',
+                {name, email, password},config);
+
+                console.log(response.data);
+                window.location.href = '/';
+            }
+        } catch (error){
+            console.error('error during submission',error.message);
         }
+
     };
 
     return (
@@ -27,13 +54,14 @@ const LoginSignup = () => {
 
                 <div className='inputs_container'>
                     <div className='input_box'>
-                        <input type='text' placeholder='Name'></input>
+                        <input type='text' placeholder='Name' value={name} onChange ={(e) => setName(e.target.value)}/>
                     </div>
                     <div className='input_box'>
-                        <input type='email' placeholder='Email'></input>
+                        <input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+
                     </div>
                     <div className='input_box'>
-                        <input type='password' placeholder='Password'></input>
+                        <input type='email' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
                     </div>
                 </div>
 

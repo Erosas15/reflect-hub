@@ -77,10 +77,11 @@ const JournalPage = ({ journalEntries }) => (
   </div>
 );
 
-const Journal = ({ journalEntries }) => (
+const Journal = ({ journalEntries, isSignedIn, setIsSignedIn }) => (
   <div>
-    <Header />
-
+      <Header
+        isSignedIn={isSignedIn}/>
+        
     <div className="journal-component">
       <Routes>
         <Route path="/" element={<JournalPage journalEntries={journalEntries} />} />

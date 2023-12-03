@@ -1,23 +1,44 @@
-.header{
+.header {
     background-color: #AEDFF7;
     color: #333333;
-    padding: 20px;
+    padding: 22px;
+    text-align: center;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; /* Center items vertically */
 }
-
-.sign-in-btn{
-    background-color: white;
-    color:#333333;
+  
+.header-buttons {
+    display: flex;
+}
+  
+.header-buttons button {
+    margin: 0 10px; 
+    color: #333333;
     padding: 15px 25px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    margin-right: 10px;
     font-size: 18px;
 }
-
-.header .sign-in-btn {
-    margin-left: auto;
+  
+.sign-in-btn {
+    background-color: white;
+    color: #333333;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
 }
+  
+.sign-out-btn {
+    background-color: white;
+    color: #333333;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+  
