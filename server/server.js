@@ -10,6 +10,8 @@ moduleAlias.addAliases({
 });
 
 const authRoutes = require("@routes/auth");
+const messageRoute = require("@routes/journal")
+
 
 const app = express();
 const port = 3001;
@@ -26,6 +28,7 @@ app.use(cors(corsOptions));
 
 // Attach route handlers
 app.use("/auth", authRoutes);
+app.use("/route", messageRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

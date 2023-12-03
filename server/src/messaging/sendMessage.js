@@ -1,12 +1,12 @@
-const { db } = require("@src/firebase");
+const { db } = require("../firebase");
 const { collection, addDoc } = require("firebase/firestore");
 
-const sendMessage = async (senderId, receiverId, content) => {
+const sendMessage = async (senderId, content) => {
   const messagesRef = collection(db, "messages");
   const newMessage = {
     senderId,
     content,
-    timestamp: new Date(), // You can use serverTimestamp() if you prefer server-side timestamp
+    timestamp: new Date(), // can use serverTimestamp() if you prefer server-side timestamp
   };
 
   try {
@@ -17,10 +17,6 @@ const sendMessage = async (senderId, receiverId, content) => {
   }
 };
 
-sendMessage(
-  "k2tefNYNW2QnnHTkZJwZJ3DW5yt2",
-  "hhTWJ5xrRGMP94qdZW5oyrQ79S62",
-  "test #2"
-);
+//sendMessage("k2tefNYNW2QnnHTkZJwZJ3DW5yt2", "test #4");
 
 module.exports = sendMessage;

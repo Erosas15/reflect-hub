@@ -4,7 +4,9 @@
   "description": "This app will take in information from user and utlize GPT to provide information and resources about mental health to stay mentally healthy",
   "main": "index.js",
   "dependencies": {
+    "axios": "^1.6.2",
     "child_process": "^1.0.2",
+    "concurrently": "^8.2.2",
     "cors": "^2.8.5",
     "csv-parser": "^3.0.0",
     "d3-dsv": "^2.0.0",

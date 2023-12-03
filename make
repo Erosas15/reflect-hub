@@ -17,13 +17,15 @@ libraries=(
   "react-dom"
   "react-router-dom"
   "react-scripts"
-  "web-vitals"
+  "web-vitals",
+  "axios",
+  "concurrently"
 )
 
 # Loop through all elements in the array
 for library in "${libraries[@]}"; do
   echo "Installing: $library ..."
-  npm install -g "$library"
+  npm install "$library"
 
   # Check if npm install was successful
   if [ $? -eq 0 ]; then
