@@ -23,7 +23,7 @@
     "web-vitals": "^3.5.0"
   },
   "scripts": {
-    "build": "./build",
+    "build": "./make",
     "test": "concurrently \"npm run start-client\" \"npm run start-server\"",
     "start-client": "cd client && npm start",
     "start-server": "cd server && node server.js",
