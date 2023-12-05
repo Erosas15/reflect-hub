@@ -4,7 +4,7 @@ const { db } = require("../firebase");
 const colRef = collection(db, "users");
 
 // This function would return the entry id. 
-const addJournalEntry = async (userID, time, entry) => {
+const addJournalEntry = async (userID, time, entry, title) => {
   // Reference to the specific user document
   const userDocRef = doc(colRef, userID);
 
@@ -15,6 +15,7 @@ const addJournalEntry = async (userID, time, entry) => {
   const journalData = {
     timeStamp: time,
     entry: entry,
+    title: title
   };
 
   // Use addDoc to add a new document to the "orders" subcollection
@@ -35,6 +36,6 @@ const addJournalEntry = async (userID, time, entry) => {
     });
 };
 
-addJournalEntry('AKwydTjTi1eJjs1mVXlSfLdS5Ia2', Date.now(), 'testing entry')
+addJournalEntry('AKwydTjTi1eJjs1mVXlSfLdS5Ia2', Date.now(), 'testing entry', 'testing title')
 
 module.exports = addJournalEntry;
