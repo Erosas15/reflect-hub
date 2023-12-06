@@ -13,17 +13,19 @@ libraries=(
   "fs"
   "csv-parser"
   "d3-dsv@2"
+  "papaparse"
   "react"  # frontend
   "react-dom"
   "react-router-dom"
   "react-scripts"
-  "web-vitals",
-  "axios",
+  "web-vitals"
+  "axios"
   "concurrently"
 )
 
-# Loop through all elements in the array
-for library in "${libraries[@]}"; do
+# Function to install dependencies
+install_dependency() {
+  local library=$1
   echo "Installing: $library ..."
   npm install "$library"
 
@@ -33,5 +35,9 @@ for library in "${libraries[@]}"; do
   else
     echo "Error installing: $library"
   fi
-done
+}
 
+# Loop through all elements in the array
+for library in "${libraries[@]}"; do
+  install_dependency "$library"
+done
