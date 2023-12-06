@@ -10,9 +10,9 @@ const router = express.Router();
 
 // Router for adding journal entry
 router.post("/api/add-entries", async (req, res) => {
-  const { userID, time, entry } = req.body;
+  const { userID, time, entry, title} = req.body;
   try {
-    const entryID = await addJournalEntry(userID, time, entry);
+    const entryID = await addJournalEntry(userID, time, entry, title);
     if (entryID) {
       res.json({ success: true, entryID });
     } else {
