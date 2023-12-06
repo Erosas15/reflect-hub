@@ -4,14 +4,14 @@ import './login-signup.css';
 import Footer from '../Footer/footer';
 
 const LoginSignup = () => {
-    const [action, setAction] = useState('Login');
+    const [isLogin, setIsLogin] = useState(true);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     
     const handleFormSwitch = () => {
-        setAction((prevAction) => (prevAction === 'Login' ? 'Sign Up' : 'Login'));
+        setIsLogin(!isLogin);
     };
 
     const handleFormSubmit = async() => {
@@ -25,19 +25,21 @@ const LoginSignup = () => {
             };
     
 
-            if (action ==='Login'){
+            if (isLogin){
                 const response = await axios.post('http://localhost:3001/auth/api/signin',
                 {email,password}, config);
 
                 sessionStorage.setItem('user', JSON.stringify(response.data.user));
 
                 console.log(response.data);
-                window.location.href = 'journal';
+
+                window.location.href = '/';
             }else {
                 const response = await axios.post('http://localhost:3001/auth/api/signup',
                 {name, email, password},config);
 
                 console.log(response.data);
+                setIsLogin(!isLogin);
                 window.location.href = '/';
             }
         } catch (error){
@@ -47,10 +49,41 @@ const LoginSignup = () => {
     };
 
     return (
+
         <div className='page'>
+        {isLogin ? (
             <div className='container'>
                 <div className='login_header'>
-                    <div className='signin_text'>{action}</div>
+                    <div className='signin_text'>Login</div>
+                </div>
+                
+                <div className='inputs_container'>
+                    <div className='input_box'>
+                        <input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+
+                    </div>
+                    <div className='input_box'>
+                        <input type='email' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    </div>
+                </div>
+
+                <div className='formSwitch'>
+                    <>
+                    Not signed up? <span onClick={handleFormSwitch}>Sign Up</span>
+                    </>
+                </div>
+
+                <div className='submitContainer'>
+                    <div className='submit gray' onClick={handleFormSubmit}>
+                        Login
+                    </div>
+                </div>
+
+            </div>      
+        ) : (
+            <div className='container'>
+                <div className='signup_header'>
+                    <div className='signup_text'>Sign up</div>
                 </div>
 
                 <div className='inputs_container'>
@@ -65,27 +98,25 @@ const LoginSignup = () => {
                         <input type='email' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
                     </div>
                 </div>
-
                 <div className='formSwitch'>
-                    {action === 'Login' ? (
-                        <>
-                            Not signed up? <span onClick={handleFormSwitch}>Sign Up</span>
-                        </>
-                    ) : (
-                        <>
-                            Already a member? <span onClick={handleFormSwitch}>Login</span>
-                        </>
-                    )}
+                <>
+                    Already a member? <span onClick={handleFormSwitch}>Login</span>
+                </>
                 </div>
 
                 <div className='submitContainer'>
                     <div className='submit gray' onClick={handleFormSubmit}>
-                        {action === 'Login' ? 'Login' : 'Sign Up'}
+                        Sign Up
                     </div>
                 </div>
-            </div>
-            <Footer/>
+
+            </div>            
+        )}
+
+
+        <Footer/>
         </div>
+        
     );
 };
 

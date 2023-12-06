@@ -32,13 +32,7 @@ const App = () => {
     return (
         <Routes>
             <Route path="/">
-
-            {isSignedIn ? (
                 <Route index element={<LandingPage isSignedIn = {isSignedIn} setIsSignedIn={setIsSignedIn} />} />
-            ) : (
-                <Route index element={<LandingPage isSignedIn = {isSignedIn} setIsSignedIn={setIsSignedIn} />} />
-            )
-        }
                 <Route path="login-signup" element={<LoginSignup />} />
                 <Route path="journal/*" element={<Journal journalEntries={journals} isSignedIn = {isSignedIn} setIsSignedIn={setIsSignedIn} />} />
                 <Route path="support-group" element={<SupportGroup isSignedIn = {isSignedIn} setIsSignedIn = {setIsSignedIn} />} />

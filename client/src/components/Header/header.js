@@ -25,9 +25,7 @@ const Header = ({ isSignedIn, onSignOut }) => { // don't know why onSignInClick 
             <button className = 'chat' onClick = {handleChatBotClick}>Chat Bot</button>
             <button className= 'support group' onClick = {handleGroupClick}>Support Group</button>
             <button className = 'journal' onClick={handleJournalClick}>Journal</button>
-
-
-          <button className='sign-out-btn' onClick={onSignOut}>Sign Out</button>
+            <button className='sign-out-btn' onClick={onSignOut}>Sign Out</button>
         </div>
       ) : (
         <button className='sign-in-btn' onClick={onSignInClick}>Sign In</button>

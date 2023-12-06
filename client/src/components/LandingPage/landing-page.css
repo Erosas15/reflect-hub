@@ -6,16 +6,14 @@ body {
     background-color: #E4E4E4;
 }
 
-
-
-.page-body {
+.page-body-signedout, .page-body-signedin {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
   
-.intro-text {
+.intro-text, .welcome-text {
     text-align: center;
     max-width: 600px; 
     margin: 20px; 

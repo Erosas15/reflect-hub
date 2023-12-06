@@ -6,7 +6,6 @@ import './landing-page.css'
 import Header from '../Header/header';
 import Footer from '../Footer/footer';
 
-
 const LandingPage = ({ isSignedIn, setIsSignedIn }) => {
   const handleSignInClick = () => {
     window.location.href = "login-signup";
@@ -52,13 +51,28 @@ const LandingPage = ({ isSignedIn, setIsSignedIn }) => {
         onSignInClick={handleSignInClick}
         onSignOut={handleSignOutClick}/>
 
-      <div className='page-body'>
-        <h1>ReflectHub</h1>
-        <div className='intro-text'>
-        Hello! Welcome to ReflectHub, a web app for mental health and journaling! ReflectHub aims to help document your current state of mental health as well as provide support and knowledge that will hopefully help your overall well-being!
+      {isSignedIn ? (
+        <div className='page-body-signedin'>
+          <h1>ReflectHub</h1>
+          <div className='welcome-text'>
+            Hi, Welcome to ReflectHub! With ReflectHub you can spill your deepest thoughts in your own personal journal. You will have the option of joining a chat room to ask for advice or provide advice to others. If you want someone to talk to, 
+            Our GBT ChatBot is always down for a chat!
+          </div>
         </div>
-        <button className='login-btn' onClick={handleSignInClick}>Login</button>
-      </div>
+        
+      ) : (
+        <div className='page-body-signedout'>
+          <h1>ReflectHub</h1>
+          <div className='intro-text'>
+          Hello! Welcome to ReflectHub, a web app for mental health and journaling! ReflectHub aims to help document your current state of mental health as well as provide support and knowledge that will hopefully help your overall well-being!
+          </div>
+          <button className='login-btn' onClick={handleSignInClick}>Login</button>
+        </div>
+        )
+      }
+
+      
+
       <Footer/>
     </div>
   );

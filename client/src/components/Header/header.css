@@ -2,23 +2,18 @@
     background-color: #AEDFF7;
     color: #333333;
     padding: 22px;
-    text-align: center;
+    display: flex;
+}
+  
+.header-buttons {
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Center items vertically */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 2; /* Higher z-index to ensure it's on top */
 }
-
-.header-buttons {
-    display: flex;
-}
-
+  
 .header-buttons button {
-    margin: 0 10px; 
+    margin: 0 25px;
     color: #333333;
     padding: 15px 25px;
     border: none;
@@ -26,23 +21,16 @@
     cursor: pointer;
     font-size: 18px;
 }
-
+  
 .sign-in-btn {
-    background-color: white;
+    background-color:white ;
     color: #333333;
     padding: 15px 25px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     font-size: 18px;
+    margin-right: 10px;
+    margin-left: auto;
 }
-
-.sign-out-btn {
-    background-color: white;
-    color: #333333;
-    padding: 15px 25px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 18px;
-}
+  
