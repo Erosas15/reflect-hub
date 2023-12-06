@@ -6,6 +6,7 @@ import LandingPage from '../LandingPage/landing-page';
 import LoginSignup from "../Login-Signup/login-signup";
 import Journal from "../Journal/journal";
 import SupportGroup from "../SupportGroup/support-group";
+import ChatBot from "../ChatBot/chat-bot";
 
 const App = () => {
 
@@ -40,7 +41,8 @@ const App = () => {
         }
                 <Route path="login-signup" element={<LoginSignup />} />
                 <Route path="journal/*" element={<Journal journalEntries={journals} isSignedIn = {isSignedIn} setIsSignedIn={setIsSignedIn} />} />
-                <Route path="support-group" element={<SupportGroup />} />
+                <Route path="support-group" element={<SupportGroup isSignedIn = {isSignedIn} setIsSignedIn = {setIsSignedIn} />} />
+                <Route path="chat-bot" element={<ChatBot isSignedIn = {isSignedIn} setIsSignedIn = {setIsSignedIn} />} />
             </Route>
         </Routes>
     );

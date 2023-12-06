@@ -32,6 +32,7 @@ const LoginSignup = () => {
                 sessionStorage.setItem('user', JSON.stringify(response.data.user));
 
                 console.log(response.data);
+                window.location.href = 'journal';
             }else {
                 const response = await axios.post('http://localhost:3001/auth/api/signup',
                 {name, email, password},config);

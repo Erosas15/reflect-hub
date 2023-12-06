@@ -1,9 +1,9 @@
 import './header.css';
 
-const Header = ({ isSignedIn, onSignOut, onSignInClick }) => {
+const Header = ({ isSignedIn, onSignOut }) => { // don't know why onSignInClick was a passed value but i set it to a function for now
 
   const handleJournalClick = () => {
-    window.location.href = "journal";
+    window.location.href = 'journal';
   };
 
   const handleGroupClick = () => {
@@ -11,16 +11,19 @@ const Header = ({ isSignedIn, onSignOut, onSignInClick }) => {
   };
 
   const handleChatBotClick = () => {
-    window.location.href = 'journal';
-    console.log("chatboxed clicked");
+    window.location.href = 'chat-bot';
+  }
+
+  const onSignInClick = () => {
+    window.location.href = 'login-signup';
   }
 
   return (
     <div className='header'>
       {isSignedIn ? (
         <div className= 'header-buttons'>
-            <button className = 'chat' onClick = {handleChatBotClick}>ChatBox</button>
-            <button className= 'groups' onClick = {handleGroupClick}>Groups</button>
+            <button className = 'chat' onClick = {handleChatBotClick}>Chat Bot</button>
+            <button className= 'support group' onClick = {handleGroupClick}>Support Group</button>
             <button className = 'journal' onClick={handleJournalClick}>Journal</button>
 
 
