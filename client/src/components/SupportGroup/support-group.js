@@ -12,13 +12,13 @@ const SupportGroup = ({ isSignedIn, setIsSignedIn }) => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/messages/api/get-messages', { 
+        const response = await axios.get('http://localhost:3001/messages/api/get-messages', {
           params: {
             userId1: 'lqtvJHBOzROY3caILGxQ4v95X0F2', // Replace with the actual current user ID
             userId2: 'k2tefNYNW2QnnHTkZJwZJ3DW5yt2', // Replace with the actual other user ID
           },
         });
-        setMessages(response.data);
+        setMessages(response.data.reverse()); // Reverse the order of messages
       } catch (error) {
         console.error('Error fetching messages:', error);
       }
@@ -36,23 +36,42 @@ const SupportGroup = ({ isSignedIn, setIsSignedIn }) => {
   const handleClick = () => {
     const currentContent = document.querySelector('.chat-box').innerText.trim();
     console.log('Sending:', currentContent);
-
-    // Add logic to send the message to the server and update the messages state
-    // For example, you can update the state here if needed:
-    // setMessages((prevMessages) => [...prevMessages, { id: generateId(), text: currentContent }]);
-
+  
+    // Replace newline characters with <br> elements
+    const formattedContent = currentContent.replace(/\n/g, '<br>');
+  
+    // Update the state with the new message at the end (reverse order)
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { id: generateId(), text: formattedContent },
+    ]);
+  
     // Clear the content after sending
     document.querySelector('.chat-box').innerText = '';
+  
+    // Scroll to the bottom after sending a message
+    const messagesContainer = document.querySelector('.messages');
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  };
+  
+
+  const generateId = () => {
+    // You can use a library like uuid to generate unique IDs
+    // For simplicity, this example generates a simple timestamp-based ID
+    return new Date().getTime().toString();
   };
 
   return (
     <div className="page">
-      <Header isSignedIn={isSignedIn}/>
+      <Header isSignedIn={isSignedIn} />
       <div className="text-chat">
         <div className="messages">
           {messages.map((message) => (
-            <div key={message.id} className="message">
-              {message.text}
+            <div key={message.id} className={"message" /* ${message.userId === currUser.id ? 'self' : 'other'} */}>
+              <div className={"message-id" /* ${message.userId === currUser.id ? 'self' : 'other'} */}>
+                {message.id}
+              </div>
+              <div className="message-text" dangerouslySetInnerHTML={{ __html: message.text }} />
             </div>
           ))}
         </div>

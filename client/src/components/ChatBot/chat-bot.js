@@ -25,12 +25,12 @@ const ChatBot = ({ isSignedIn, setIsSignedIn}) => {
   return (
     <div className="page">
       <Header isSignedIn={isSignedIn}/>
-      <div className="text-chat">
+      <div className="response-box">
         <div className="responses">
           {/* responses go here */}
         </div>
-        <div className="chat-box" contentEditable="true" onInput={handleContentChange}></div>
-        <button className="send-button" onClick={handleClick}>
+        <div className="ask-box" contentEditable="true" onInput={handleContentChange}></div>
+        <button className="submit-button" onClick={handleClick}>
           Send
         </button>
       </div>

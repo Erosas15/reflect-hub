@@ -3,7 +3,7 @@
     height: 100vh;
   }
   
-  .text-chat {
+  .response-box {
     position: absolute;
     bottom: 40px;
     left: 50%;
@@ -17,16 +17,16 @@
     height: 100%;
   }
   
-  .chat-box {
+  .ask-box {
     width: 100%;
     border-radius: 20px;
     border: 1px solid #ddd;
     padding: 10px;
     background-color: #ddd;
     margin-bottom: 10px;
-  }
+  } */
   
-  .send-button {
+  .submit-button {
     position: absolute;
     bottom: 31px;
     right: -60px;

@@ -1,69 +1,97 @@
 .page {
-    position: relative;
-    height: 100vh;
-  }
-  
-  .text-chat {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 75%;
-    padding: 20px;
-  }
-  
-  .messages {
-    overflow-y: auto;
-    height: 100%;
-  }
-  
-  .chat-box {
-    width: 100%;
-    border-radius: 20px;
-    border: 1px solid #ddd;
-    padding: 10px;
-    background-color: #ddd;
-    margin-bottom: 10px;
-  }
-  
-  .send-button {
-    position: absolute;
-    bottom: 31px;
-    right: -60px;
-    padding: 10px;
-    background-color: white;
-    color: #333333;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
-  .members {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #eee;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  
-  .member {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .member img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .member span {
-    font-size: 14px;
-  }
-  
+  position: relative;
+  height: 100vh;
+}
+
+.text-chat {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  padding: 20px;
+}
+
+.messages {
+  overflow-y: auto;
+  max-height: 72vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom styles for the scrollbar */
+.messages::-webkit-scrollbar {
+  width: 12px; /* Set the width of the scrollbar */
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background-color: #888; /* Set the color of the scrollbar thumb */
+  border-radius: 6px; /* Set the border radius of the scrollbar thumb */
+}
+
+.messages::-webkit-scrollbar-track {
+  background-color: #ddd; /* Set the color of the scrollbar track */
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 15px;
+  word-wrap: break-word;
+
+  /* for testing, delete once finshed */
+  background-color: #7FCAF5;
+  align-self: flex-end;
+}
+
+.message.self {
+  background-color: #7FCAF5;
+  align-self: flex-end;
+}
+
+.message.other {
+  background-color: #F0F0F0;
+  align-self: flex-start;
+}
+
+.message-id {
+  font-size: 12px;
+  color: #777; /* Adjust the color as needed */
+  margin-bottom: 3px;
+}
+
+.message-id.self {
+  text-align: right;
+}
+
+.message-id.other {
+  text-align: left;
+}
+
+.message-text {
+  margin-top: 5px;
+}
+
+.chat-box {
+  width: 92%;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #ddd;
+  margin-bottom: 10px;
+}
+
+.send-button {
+  position: absolute;
+  bottom: 31px;
+  right: 40px;
+  padding: 10px;
+  background-color: white;
+  color: #333333;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
