@@ -3,15 +3,14 @@ const admin = require("firebase-admin");
 const { firebaseAPIConfig, firebaseServiceConfig } = require("../config.json");
 const { getFirestore } = require("firebase/firestore");
 
-// Initialize the client-side Firebase App
-const clientApp = initializeApp(firebaseAPIConfig);
-
-// Initialize the server-side Firebase Admin SDK
-const adminApp = admin.initializeApp({
-  credential: admin.credential.cert(firebaseServiceConfig),
-  databaseURL: firebaseAPIConfig.databaseURL,
-});
-
-const db = getFirestore();
-
-module.exports = { clientApp, adminApp, db };
+try {
+  const clientApp = initializeApp(firebaseAPIConfig);
+  const adminApp = admin.initializeApp({
+    credential: admin.credential.cert(firebaseServiceConfig),
+    databaseURL: firebaseAPIConfig.databaseURL,
+  });
+  const db = getFirestore();
+  module.exports = { clientApp, adminApp, db };
+} catch (error) {
+  console.error("Firebase initialization error:", error);
+}

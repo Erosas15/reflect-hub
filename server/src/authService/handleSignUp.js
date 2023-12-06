@@ -7,36 +7,41 @@ const auth = getAuth(clientApp);
 
 const handleSignUp = async (name, email, password) => {
   try {
+    // Create a new user
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
-
     const user = userCredential.user;
 
-    userData = {
+    // Prepare user data for storage
+    const userData = {
       name: encryptName(name),
       email: encryptName(email),
     };
 
+    // Create a reference to the "users" collection and the user document
     const colRef = collection(db, "users");
-    const users = doc(colRef, user.uid);
+    const userDocRef = doc(colRef, user.uid);
 
     try {
-      // Use setDoc to set the data in the document
-      await setDoc(users, userData);
+      // Use setDoc to set the data in the user document
+      await setDoc(userDocRef, userData);
     } catch (error) {
       console.error("Error adding document:", error.message);
+      // Handle the error accordingly, you might want to throw it again if needed
+      throw error;
     }
 
     return user;
   } catch (error) {
     console.error("Error signing up:", error.message);
-    return null;
+    // Handle the error accordingly, you might want to throw it again if needed
+    throw error;
   }
 };
 
-handleSignUp("");
+// Example usage: handleSignUp("John Doe", "john@example.com", "password123");
 
 module.exports = handleSignUp;

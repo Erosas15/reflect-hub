@@ -11,25 +11,29 @@
     "csv-parser": "^3.0.0",
     "d3-dsv": "^2.0.0",
     "express": "^4.18.2",
-    "firebase": "^10.7.0",
+    "firebase": "^10.7.1",
     "firebase-admin": "^11.11.1",
     "fs": "^0.0.1-security",
+    "hnswlib-node": "^1.4.2",
     "langchain": "^0.0.200",
     "module-alias": "^2.2.3",
     "openai": "^4.20.1",
+    "papaparse": "^5.4.1",
     "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.1",
     "react-scripts": "^5.0.1",
+    "tiktoken": "^1.0.11",
+    "util": "^0.12.5",
     "web-vitals": "^3.5.0"
   },
   "scripts": {
-    "build": "./make",
+    "install-deps": "./make",
     "test": "concurrently \"npm run start-client\" \"npm run start-server\"",
     "start-client": "cd client && npm start",
     "start-server": "cd server && node server.js",
-    "start": "npm build && npm test"
+    "start": "npm run install-deps && npm run test"
   },
   "browserslist": {
     "production": [

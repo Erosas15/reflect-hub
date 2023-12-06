@@ -10,25 +10,23 @@ moduleAlias.addAliases({
 });
 
 const authRoutes = require("@routes/auth");
-const messageRoute = require("@routes/journal")
-
+const journalRoute = require("@routes/journal");
 
 const app = express();
 const port = 3001;
 
-
 const corsOptions = {
-  origin: 'http://localhost:3000',
-  methods: 'GET, HEAD,PUT,PATCH,POST,DELETE',
+  origin: "http://localhost:3000",
+  methods: "GET, HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
-}
+};
 
 app.use(express.json());
 app.use(cors(corsOptions));
 
 // Attach route handlers
 app.use("/auth", authRoutes);
-app.use("/route", messageRoute);
+app.use("/journal", journalRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
