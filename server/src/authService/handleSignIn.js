@@ -13,11 +13,22 @@ const handleSignIn = async (email, password) => {
     );
     const user = userCredential.user;
     console.log("User signed in:", user.email);
-    // You can redirect or perform additional actions after successful sign-in.
-    return user;
+
+    // Return an object with success, userId, and username properties
+    return {
+      success: true,
+      userId: user.uid,
+      username: user.displayName || user.email, // Assuming you have a username or using the email as a fallback
+    };
   } catch (error) {
     console.error("Error signing in:", error.message);
-    return null;
+
+    // Return an object with success as false and the error message
+    return {
+      success: false,
+      error: error.message,
+    };
   }
 };
+
 module.exports = handleSignIn;

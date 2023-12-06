@@ -11,14 +11,22 @@ const router = express.Router();
 router.post("/api/signup", async (req, res) => {
   const { name, email, password } = req.body;
   try {
-    const user = await handleSignUp(name, email, password); // Import handleSignUp
-    if (user) {
-      res.json({ success: true, user });
+    const signUpResult = await handleSignUp(name, email, password);
+
+    if (signUpResult.success) {
+      // If signup is successful, include additional data in the response
+      res.json({
+        success: true,
+        userId: signUpResult.userId,
+        username: signUpResult.username,
+        // Add other relevant information you want to send to the client
+      });
     } else {
-      res.status(500).json({ success: false, error: "Sign-up failed" });
+      // If signup fails, provide an appropriate error message
+      res.status(401).json({ success: false, error: signUpResult.error });
     }
   } catch (error) {
-    console.error("Error during sign-up:", error.message);
+    console.error("Error during signup:", error.message);
     res.status(500).json({ success: false, error: error.message });
   }
 });
@@ -27,11 +35,20 @@ router.post("/api/signup", async (req, res) => {
 router.post("/api/signin", async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await handleSignIn(email, password);
-    if (user) {
-      res.json({ success: true, user });
+    const signInResult = await handleSignIn(email, password);
+    console.log("signInResult", signInResult);
+
+    if (signInResult.success) {
+      // If sign-in is successful, include additional data in the response
+      res.json({
+        success: true,
+        userId: signInResult.userId,
+        username: signInResult.username,
+        // Add other relevant information you want to send to the client
+      });
     } else {
-      res.status(500).json({ success: false, error: "Invalid credentials" });
+      // If sign-in fails, provide an appropriate error message
+      res.status(401).json({ success: false, error: signInResult.error });
     }
   } catch (error) {
     console.error("Error during sign-in:", error.message);

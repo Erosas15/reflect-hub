@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './login-signup.css';
-import Footer from '../Footer/footer';
+import React, { useState } from "react";
+import axios from "axios";
+import "./login-signup.css";
+import Footer from "../Footer/footer";
 
 const LoginSignup = () => {
     const [isLogin, setIsLogin] = useState(true);
