@@ -87,3 +87,36 @@
   border-radius: 10px;
 }
 
+/* view page */
+.view-page {
+  
+  padding: 20px;
+  width: 70%;
+  margin: auto;
+}
+
+.title-view-container, .content-view-container {
+  width: 70%;
+  margin: auto;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.title-view-container{
+  background-color: #AEDFF7;
+}
+
+.title-view {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #333333;
+}
+
+.content-view {
+  font-size: 18px;
+  line-height: 1.6;
+}

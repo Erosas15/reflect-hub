@@ -171,17 +171,21 @@ const ViewJournal = () => {
   console.log(title);
   return(
 
-    <div className='view-page'>
-      <div className="title-view">
-        {title}
-      </div>
-
-      <div className='content-view'>
-        {content}
-      </div>
-
-      <Footer/>
+<div className='view-page'>
+  <div className='title-view-container'>
+    <div className="title-view">
+      {title}
     </div>
+  </div>
+
+  <div className='content-view-container'>
+    <div className='content-view'>
+      {content}
+    </div>
+  </div>
+
+  <Footer />
+</div>
   )
 };
 
