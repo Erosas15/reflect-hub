@@ -15,7 +15,7 @@ const App = () => {
     
     useEffect(() => {
         // Check if the user is in session storage when the application loads
-        const storedUser = sessionStorage.getItem('user');
+        const storedUser = localStorage.getItem('userID');
         if (storedUser) {
           setIsSignedIn(true);
         }

@@ -13,7 +13,7 @@ const LandingPage = ({ isSignedIn, setIsSignedIn }) => {
 
   const handleSignOutClick = async () => {
     try {
-      const user = JSON.parse(sessionStorage.getItem('user'));
+      const user = localStorage.getItem('userID');
       if (!user) {
         // Handle the case where user data is not found in sessionStorage
         return;
@@ -27,10 +27,10 @@ const LandingPage = ({ isSignedIn, setIsSignedIn }) => {
       };
 
       // Send a request to your backend sign-out endpoint
-      await axios.post('http://localhost:3001/auth/api/signout', { uid: user.uid }, config);
+      await axios.post('http://localhost:3001/auth/api/signout', { uid: user }, config);
 
       // Clear user data from sessionStorage
-      sessionStorage.removeItem('user');
+      localStorage.removeItem('userID');
 
       // Update the state to reflect that the user is signed out
       setIsSignedIn(false);
