@@ -30,7 +30,7 @@
     "web-vitals": "^3.5.0"
   },
   "scripts": {
-    "install-deps": "./make",
+    "install-deps": "npm install express cors module-alias path firebase firebase-admin openai langchain fs papaparse csv-parser d3-dsv@2 react react-dom react-router-dom react-scripts web-vitals axios concurrently",
     "test": "concurrently \"npm run start-client\" \"npm run start-server\"",
     "start-client": "cd client && npm start",
     "start-server": "cd server && node server.js",
