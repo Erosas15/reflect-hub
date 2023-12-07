@@ -64,10 +64,10 @@
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 16px; 
-  height: 500px; 
-  resize: none; 
-  overflow-y: auto; 
+  font-size: 16px;
+  height: 500px;
+  resize: none;
+  overflow-y: auto;
 }
 
 .editor-buttons {
@@ -89,7 +89,6 @@
 
 /* view page */
 .view-page {
-  
   padding: 20px;
   width: 70%;
   margin: auto;

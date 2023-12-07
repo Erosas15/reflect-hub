@@ -62,7 +62,7 @@ const NewEntry= () => {
         </div>
 
         <label className='content-editor'>Content:</label>
-        <input value={content} onChange={(e) => setContent(e.target.value)} className='content-input'/>
+        <textarea value={content} onChange={(e) => setContent(e.target.value)} className='content-input'/>
 
       <Footer/>
     </div>
