@@ -36,7 +36,6 @@ router.post("/api/signin", async (req, res) => {
   const { email, password } = req.body;
   try {
     const signInResult = await handleSignIn(email, password);
-    console.log("signInResult", signInResult);
 
     if (signInResult.success) {
       // If sign-in is successful, include additional data in the response

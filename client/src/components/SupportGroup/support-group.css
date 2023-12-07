@@ -8,7 +8,7 @@
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  width: 85%;
+  width: 90%;
   padding: 20px;
 }
 
@@ -73,6 +73,7 @@
 
 .message-text {
   margin-top: 5px;
+  font-family:Arial, sans-serif;
 }
 
 .chat-box {
@@ -85,9 +86,10 @@
 }
 
 .send-button {
-  position: absolute;
+  position: absolute; 
   bottom: 31px;
-  right: 40px;
+  right: 3%; /* Adjusted the right value */
+  margin-left: 10px; /* Added margin to the left */
   padding: 10px;
   background-color: white;
   color: #333333;
