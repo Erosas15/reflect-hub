@@ -7,7 +7,6 @@ try {
   const clientApp = initializeApp(firebaseAPIConfig);
   const adminApp = admin.initializeApp({
     credential: admin.credential.cert(firebaseServiceConfig),
-    databaseURL: firebaseAPIConfig.databaseURL,
   });
   const db = getFirestore();
   module.exports = { clientApp, adminApp, db };

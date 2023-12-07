@@ -6,10 +6,18 @@ import Header from "../Header/header";
 import Footer from "../Footer/footer";
 import "./journal.css";
 
-const JournalEntry = ({ title }) => {
+const JournalEntry = ({title, timestamp, id }) => {
+
+  const navigate = useNavigate();
+
+  const handleEntryClick = () => {
+    navigate(`/journal/entry/${id}`);
+  };
+
   return (
-    <div className="journal-entry">
+    <div className="journal-entry" onClick={handleEntryClick}>
       <div>{title}</div>
+      <div>{new Date(timestamp).toLocaleString()}</div>
     </div>
   );
 };
@@ -18,6 +26,7 @@ const JournalEntry = ({ title }) => {
 const NewEntry= () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState(''); 
+  const navigate = useNavigate();
 
   const config = {
     withCredentials: true,
@@ -32,21 +41,22 @@ const NewEntry= () => {
 
       await axios.post('http://localhost:3001/journal/api/add-entries',
       {userID: user, time: Date.now(),entry:content, title:title},config);
+      navigate('/');
     }catch(error){
       console.error('error saving',error.message);
     }
   };
 
   return (
-    <div classname = 'editor-page'>
+    <div className = 'editor-page'>
         <h2>New Journal Entry</h2>
 
         <label className='title-editor'>Title:</label>
         <input value={title} onChange={(e) => setTitle(e.target.value)} className='title-input'/>
-        <div className="editor-buttons">
-         <Link to="/journal">
-          <button onClick={handleSave} >Save</button>
 
+        <div className="editor-buttons">
+          <button onClick={handleSave} >Save</button>
+         <Link to="/journal">
            <button>Cancel</button>
          </Link>
         </div>
@@ -105,21 +115,82 @@ const JournalPage= ({isSignedIn}) => {
 
         <div className="journal-entries">
           {journalEntries.map((entry) => (
-            <JournalEntry key={entry.id} title={entry.title} />
+            <JournalEntry key={entry.id} 
+            timestamp ={entry.timeStamp} 
+            id={entry.timeStamp}    
+            title={entry.title} />
           ))}
         </div>
+
       </div>
       <Footer/>
     </div>
   )
 }
 
+const ViewJournal = () => {
+  const id  = useParams();
+  const [content, setContent] = useState('');
+  const [title,setTitle] = useState('');
+
+  const config = {
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  useEffect(() =>{
+    const viewJournalContent = async() =>{
+      try{
+        const user = localStorage.getItem('userID');
+        const response = await axios.post(
+          'http://localhost:3001/journal/api/get-entries',
+          { userID: user },
+          config
+        );
+
+        for(let i = 0; i < response.data.length;i++){
+          const hash = response.data[i].timeStamp ;
+          if(toString(hash) === toString(id.id)){
+            setContent(response.data[i].entry);
+            setTitle(response.data[i].title);
+            break;
+          }
+        }
+
+      }catch(error){
+        console.log('Error getting journal entries:', error.message);
+      }
+    }
+
+    viewJournalContent();
+  },[]);
+
+  console.log(content);
+  console.log(title);
+  return(
+
+    <div className='view-page'>
+      <div className="title-view">
+        {title}
+      </div>
+
+      <div className='content-view'>
+        {content}
+      </div>
+
+      <Footer/>
+    </div>
+  )
+};
+
 const Journal = ({isSignedIn}) => {  
   return(
     <Routes>
       <Route path='/' element ={<JournalPage isSignedIn={isSignedIn} />}></Route>
       <Route path='edit/new' element ={<NewEntry/>}/>
-      <Route path='entry/:entryId'></Route>
+      <Route path='entry/:id' element={<ViewJournal/>}/>
     </Routes>
   )
 };
