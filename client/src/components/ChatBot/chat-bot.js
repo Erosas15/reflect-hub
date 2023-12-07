@@ -54,7 +54,7 @@ const ChatBot = ({ isSignedIn, setIsSignedIn }) => {
       ];
       const randomRephraseRequest =
         rephraseRequests[Math.floor(Math.random() * rephraseRequests.length)];
-      answer = rephraseRequests;
+      answer = randomRephraseRequest;
     }
 
     //const formattedContent = currentContent.replace(/\n/g, "<br>");
