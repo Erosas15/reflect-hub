@@ -56,7 +56,7 @@ const LandingPage = ({ isSignedIn, setIsSignedIn }) => {
           <h1>ReflectHub</h1>
           <div className='welcome-text'>
             Hi, Welcome to ReflectHub! With ReflectHub you can spill your deepest thoughts in your own personal journal. You will have the option of joining a chat room to ask for advice or provide advice to others. If you want someone to talk to, 
-            Our GBT ChatBot is always down for a chat!
+            Our GPT ChatBot is always down for a chat!
           </div>
         </div>
         

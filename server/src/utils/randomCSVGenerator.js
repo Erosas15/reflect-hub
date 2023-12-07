@@ -1,7 +1,7 @@
 const fs = require("fs");
 const Papa = require("papaparse");
 
-function createRandomCSV(inputCSVPath, outputCSVPath, numRows = 300) {
+function createRandomCSV(inputCSVPath, outputCSVPath, numRows = 400) {
   // Read the original CSV file
   const originalData = fs.readFileSync(inputCSVPath, "utf8");
 
