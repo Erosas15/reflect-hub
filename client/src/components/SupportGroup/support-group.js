@@ -22,9 +22,17 @@ const SupportGroup = ({ isSignedIn, onSignInClick, onSignOutClick }) => {
     }
   };
 
+ 
   useEffect(() => {
+    // Call fetchMessages when the component mounts
     fetchMessages();
+    // Set up an interval to fetch messages every 10 seconds
+    const intervalId = setInterval(fetchMessages, 100);
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(intervalId);
+
   }, []); // Call fetchMessages only once when the component mounts
+
 
   const handleContentChange = () => {
     //const currentContent = document.querySelector(".chat-box").innerText;
