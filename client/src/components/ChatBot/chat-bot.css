@@ -11,10 +11,36 @@
     width: 75%;
     padding: 20px;
   }
+
+  .response-id {
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold
+  }
+
+  .response {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    /* border: 0.5px solid #333333; */
+    font-family: Arial, sans-serif;
+    text-align: left;
+    padding: 5px
+  }
+
+  .response.self {
+    background-color:#7FCAF5;
+  }
+
+  .response.other {
+    background-color:#F0F0F0;
+  }
   
   .responses {
     overflow-y: auto;
-    height: 100%;
+    max-height: 72vh;
+    display: flex;
+    flex-direction: column;
   }
   
   .ask-box {
