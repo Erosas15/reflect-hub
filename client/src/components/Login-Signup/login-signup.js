@@ -43,7 +43,6 @@ const LoginSignup = () => {
 
           setIsLogin(true);
 
-
           // Save user.uid separately for future usage
           localStorage.setItem("userID", userId);
           window.location.href = "/";
@@ -60,6 +59,9 @@ const LoginSignup = () => {
 
         if (response.data.success) {
           window.location.href = "/";
+          alert(
+            "Account Created Successfully!\n\nPlease sign in with your new credentials to access your account."
+          );
         } else {
           // Handle unsuccessful signup
           console.error(response.data.error);
