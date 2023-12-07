@@ -6,7 +6,7 @@ import Header from "../Header/header";
 import Footer from "../Footer/footer";
 import "./support-group.css";
 
-const SupportGroup = ({ isSignedIn, setIsSignedIn }) => {
+const SupportGroup = ({ isSignedIn, onSignInClick, onSignOutClick }) => {
   const [messages, setMessages] = useState([]);
 
   const storedUserID = localStorage.getItem("userID");
@@ -57,7 +57,12 @@ const SupportGroup = ({ isSignedIn, setIsSignedIn }) => {
 
   return (
     <div className="page">
-      <Header isSignedIn={isSignedIn} />
+
+      <Header
+        isSignedIn={isSignedIn}
+        onSignInClick={onSignInClick}
+        onSignOutClick={onSignOutClick}/>
+
       <div className="text-chat">
         <div className="messages">
         {messages.map((message) => (

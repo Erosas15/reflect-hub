@@ -96,7 +96,7 @@ const JournalPage = ({ journalEntries }) => (
   </div>
 );
 
-const Journal = ({ journalEntries, isSignedIn, setIsSignedIn }) => (
+const Journal = ({ journalEntries, isSignedIn, onSignInClick, onSignOutClick }) => (
   <div>
     <Header isSignedIn={isSignedIn} />
 
