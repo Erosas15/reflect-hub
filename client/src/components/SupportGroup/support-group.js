@@ -9,57 +9,50 @@ import "./support-group.css";
 const SupportGroup = ({ isSignedIn, setIsSignedIn }) => {
   const [messages, setMessages] = useState([]);
 
+  const storedUserID = localStorage.getItem("userID");
+  console.log(`userID retrieved: ${storedUserID}`);
+
+  const fetchMessages = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/messages/api/get-messages");
+      const sortedMessages = response.data.sort((a, b) => b.timestamp - a.timestamp);
+      setMessages(sortedMessages);
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:3001/messages/api/get-messages",
-          {
-            params: {
-              userId1: "lqtvJHBOzROY3caILGxQ4v95X0F2", // Replace with the actual current user ID
-              userId2: "k2tefNYNW2QnnHTkZJwZJ3DW5yt2", // Replace with the actual other user ID
-            },
-          }
-        );
-        setMessages(response.data.reverse()); // Reverse the order of messages
-      } catch (error) {
-        console.error("Error fetching messages:", error);
-      }
-    };
     fetchMessages();
-  }, []);
+  }, []); // Call fetchMessages only once when the component mounts
 
   const handleContentChange = () => {
-    // Directly set the content without relying on the state
-    const currentContent = document.querySelector(".chat-box").innerText;
+    //const currentContent = document.querySelector(".chat-box").innerText;
     // Note: innerText will preserve spaces and line breaks
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const currentContent = document.querySelector(".chat-box").innerText.trim();
     console.log("Sending:", currentContent);
 
-    // Replace newline characters with <br> elements
-    const formattedContent = currentContent.replace(/\n/g, "<br>");
+    try {
+      await axios.post("http://localhost:3001/messages/api/send-message", {
+        senderId: storedUserID,
+        content: currentContent,
+      }, { withCredentials: true });
 
-    // Update the state with the new message at the end (reverse order)
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { id: generateId(), text: formattedContent },
-    ]);
+      // Fetch updated messages after sending
+      fetchMessages();
 
-    // Clear the content after sending
-    document.querySelector(".chat-box").innerText = "";
+      // Clear the content after sending
+      document.querySelector(".chat-box").innerText = "";
 
-    // Scroll to the bottom after sending a message
-    const messagesContainer = document.querySelector(".messages");
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  };
-
-  const generateId = () => {
-    // You can use a library like uuid to generate unique IDs
-    // For simplicity, this example generates a simple timestamp-based ID
-    return new Date().getTime().toString();
+      // Scroll to the bottom after sending a message
+      const messagesContainer = document.querySelector(".messages");
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
   };
 
   return (
@@ -67,26 +60,22 @@ const SupportGroup = ({ isSignedIn, setIsSignedIn }) => {
       <Header isSignedIn={isSignedIn} />
       <div className="text-chat">
         <div className="messages">
-          {messages.map((message) => (
+        {messages.map((message) => (
+          <div
+            key={message.senderId}
+            className={`message ${message.senderId === storedUserID ? 'self' : 'other'}`}
+          >
             <div
-              key={message.id}
-              className={
-                "message" /* ${message.userId === currUser.id ? 'self' : 'other'} */
-              }
+              className={`message-id ${message.senderId === storedUserID ? 'self' : 'other'}`}
             >
-              <div
-                className={
-                  "message-id" /* ${message.userId === currUser.id ? 'self' : 'other'} */
-                }
-              >
-                {message.id}
-              </div>
-              <div
-                className="message-text"
-                dangerouslySetInnerHTML={{ __html: message.text }}
-              />
+              {`anynomous #${message.senderId.substring(0, 5)}`}
             </div>
-          ))}
+            <div
+              className="message-text"
+              dangerouslySetInnerHTML={{ __html: message.content }}
+            />
+          </div>
+        ))}
         </div>
         <div
           className="chat-box"

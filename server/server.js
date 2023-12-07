@@ -11,6 +11,7 @@ moduleAlias.addAliases({
 
 const authRoutes = require("@routes/auth");
 const journalRoute = require("@routes/journal");
+const messagesRoute = require("@routes/messages");
 
 const app = express();
 const port = 3001;
@@ -30,6 +31,7 @@ async function startServer() {
     // Attach route handlers
     app.use("/auth", authRoutes);
     app.use("/journal", journalRoute);
+    app.use("/messages", messagesRoute);
 
     app.listen(port, () => {
       console.log(`Server is running on http://localhost:${port}`);
