@@ -1,5 +1,5 @@
 const { doc, collection, addDoc } = require("firebase/firestore");
-const { db } = require("../firebase");
+const { db } = require("@src/firebase");
 
 const colRef = collection(db, "users");
 

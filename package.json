@@ -10,6 +10,7 @@
     "cors": "^2.8.5",
     "csv-parser": "^3.0.0",
     "d3-dsv": "^2.0.0",
+    "eslint-plugin-react-hooks": "^5.0.0-canary-aba93acb6-20231205",
     "express": "^4.18.2",
     "firebase": "^10.7.1",
     "firebase-admin": "^11.11.1",

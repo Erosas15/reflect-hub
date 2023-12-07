@@ -1,118 +1,127 @@
-import { React, useState } from "react";
-import { useNavigate, Route, Routes, Link, useParams } from "react-router-dom";
+import { React, useState,useEffect } from "react";
+import { useNavigate, Route, Routes, Link,useParams} from "react-router-dom";
+import axios from "axios";
 
 import Header from "../Header/header";
 import Footer from "../Footer/footer";
 import "./journal.css";
 
-// example usage of getting userID
-const storedUserID = localStorage.getItem("userID");
-console.log(`userID retrieved: ${storedUserID}`);
+const JournalEntry = ({ title }) => {
+  return (
+    <div className="journal-entry">
+      <div>{title}</div>
+    </div>
+  );
+};
 
-const NewJournalEntry = () => {
+
+const NewEntry= () => {
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState(''); 
+
+  const config = {
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const handleSave = async() =>{
+    try{
+      const user = localStorage.getItem('userID');
+
+      await axios.post('http://localhost:3001/journal/api/add-entries',
+      {userID: user, time: Date.now(),entry:content, title:title},config);
+    }catch(error){
+      console.error('error saving',error.message);
+    }
+  };
+
+  return (
+    <div classname = 'editor-page'>
+        <h2>New Journal Entry</h2>
+
+        <label className='title-editor'>Title:</label>
+        <input value={title} onChange={(e) => setTitle(e.target.value)} className='title-input'/>
+        <div className="editor-buttons">
+         <Link to="/journal">
+          <button onClick={handleSave} >Save</button>
+
+           <button>Cancel</button>
+         </Link>
+        </div>
+
+        <label className='content-editor'>Content:</label>
+        <input value={content} onChange={(e) => setContent(e.target.value)} className='content-input'/>
+
+      <Footer/>
+    </div>
+  )
+};
+
+
+const JournalPage= ({isSignedIn}) => {
   const navigate = useNavigate();
+  const [journalEntries,setJournalEntries] = useState([]);
 
   const handleCreatenew = () => {
-    navigate("edit/new");
+    navigate('edit/new');
   };
 
-  return (
-    <div className="new-journal-entry" onClick={handleCreatenew}>
-      <h3>Create New Journal</h3>
-      <div>+</div>
-    </div>
-  );
-};
-
-const JournalEntry = ({ title, content, date, id }) => (
-  <Link to={`/edit/${id}`} className="journal-entry">
-    <div className="journal-entry-container">
-      <h3>{title}</h3>
-      <p>{content}</p>
-      <p className="journal-entry-content">{date}</p>
-    </div>
-  </Link>
-);
-
-const JournalEditor = ({
-  match,
-  history,
-  onSave,
-  title: initialTitle,
-  content: initialContent,
-}) => {
-  const { id } = useParams();
-  const [title, setTitle] = useState(initialTitle);
-  const [content, setContent] = useState(initialContent);
-
-  const isCreatingNew = id === "new";
-
-  const handleSave = () => {
-    // Add logic to save the edited journal entry to Firebase
-    //onSave({ title, content });
-    //history.push('/');
+  const config = {
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
   };
 
-  return (
-    <div className="journal-editor-container">
-      <h2>
-        {isCreatingNew ? "Create New Journal Entry" : "Edit Journal Entry"}
-      </h2>
-      <label className="journal-editor-label">Title:</label>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className="journal-editor-input"
-      />
+  useEffect(() => {
+    const getJournalEntries = async () => {
+      try {
+        const user = localStorage.getItem('userID');
+        const response = await axios.post(
+          'http://localhost:3001/journal/api/get-entries',
+          { userID: user },
+          config
+        );
+        setJournalEntries(response.data);  // Assuming the response contains an array of entries
+      } catch (error) {
+        console.log('Error getting journal entries:', error.message);
+      }
+    };
 
-      <div className="journal-editor-buttons">
-        <button onClick={handleSave}>
-          {isCreatingNew ? "Create" : "Save"}
-        </button>
-        <Link to="/journal">
-          <button>Cancel</button>
-        </Link>
+    getJournalEntries();
+  },[]);  
+  
+  return(
+    <div className="journal-page">
+      <Header isSignedIn={isSignedIn}/>
+
+      <div className='box-container'>
+        <div className="new-journal-entry" onClick={handleCreatenew}>
+          <h3>New Entry</h3>
+          <div>+</div>
+        </div>
+
+        <div className="journal-entries">
+          {journalEntries.map((entry) => (
+            <JournalEntry key={entry.id} title={entry.title} />
+          ))}
+        </div>
       </div>
-
-      <label className="journal-editor-label">Content:</label>
-
-      <textarea
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        className="journal-editor-textarea"
-      />
+      <Footer/>
     </div>
-  );
+  )
+}
+
+const Journal = ({isSignedIn}) => {  
+  return(
+    <Routes>
+      <Route path='/' element ={<JournalPage isSignedIn={isSignedIn} />}></Route>
+      <Route path='edit/new' element ={<NewEntry/>}/>
+      <Route path='entry/:entryId'></Route>
+    </Routes>
+  )
 };
-
-const JournalPage = ({ journalEntries }) => (
-  <div className="journal-page">
-    <NewJournalEntry />
-    {journalEntries &&
-      journalEntries.map((entry, index) => (
-        <JournalEntry key={index} {...entry} />
-      ))}
-  </div>
-);
-
-const Journal = ({ journalEntries, isSignedIn, setIsSignedIn }) => (
-  <div>
-    <Header isSignedIn={isSignedIn} />
-
-    <div className="journal-component">
-      <Routes>
-        <Route
-          path="/"
-          element={<JournalPage journalEntries={journalEntries} />}
-        />
-        <Route path="edit/:id" element={<JournalEditor />} />
-        <Route path=":id" element={<JournalEntry />} />
-      </Routes>
-    </div>
-
-    <Footer />
-  </div>
-);
 
 export default Journal;

@@ -37,6 +37,9 @@ const LoginSignup = () => {
         if (response.data.success) {
           const { userId } = response.data;
 
+          setIsLogin(true);
+
+
           // Save user.uid separately for future usage
           localStorage.setItem("userID", userId);
           window.location.href = "/";
