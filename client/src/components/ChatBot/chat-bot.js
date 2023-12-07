@@ -8,7 +8,7 @@ import Footer from '../Footer/footer';
 import './chat-bot.css';
 
 const ChatBot = ({ isSignedIn, setIsSignedIn}) => {
-  const [messages, setMessages] = useState([]);
+  const [responses, setResponses] = useState([]);
 
 
   const handleContentChange = () => {
@@ -42,8 +42,8 @@ const ChatBot = ({ isSignedIn, setIsSignedIn}) => {
 
     //const formattedContent = currentContent.replace(/\n/g, "<br>");
 
-    setMessages((prevMessages) => [
-      ...prevMessages,
+    setResponses((prevResponses) => [
+      ...prevResponses,
       { id: 'User', text: currentContent },
       {id: 'ChatBot', text: answer}
     ]);
@@ -61,35 +61,29 @@ const ChatBot = ({ isSignedIn, setIsSignedIn}) => {
     // messagesContainer.scrollTop = messagesContainer.scrollHeight;
   };
 
-  const generateId = () => {
-    // You can use a library like uuid to generate unique IDs
-    // For simplicity, this example generates a simple timestamp-based ID
-    return new Date().getTime().toString();
-  };
-
   return (
     <div className="page">
       <Header isSignedIn={isSignedIn}/>
       <div className="response-box">
         <div className="responses">
           {/* responses go here */}
-          {messages.map((message) => (
+          {responses.map((response) => (
             <div
-              key={message.id}
+              key={response.id}
               className={
-                "message" /* ${message.userId === currUser.id ? 'self' : 'other'} */
+                `response ${response.id === 'User' ? 'self' : 'other'} `
               }
             >
               <div
                 className={
-                  "message-id" /* ${message.userId === currUser.id ? 'self' : 'other'} */
+                  `response-id ${response.id === 'User' ? 'self' : 'other'} `
                 }
               >
-                {message.id}
+                {response.id}
               </div>
               <div
-                className="message-text"
-                dangerouslySetInnerHTML={{ __html: message.text }}
+                className="response-text"
+                dangerouslySetInnerHTML={{ __html: response.text }}
               />
             </div>
           ))}
