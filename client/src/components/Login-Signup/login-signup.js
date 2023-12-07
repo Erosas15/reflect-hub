@@ -12,6 +12,10 @@ const LoginSignup = () => {
 
   const handleFormSwitch = () => {
     setIsLogin(!isLogin);
+    setEmail("");
+    setPassword("");
+    setName("");
+    setConfPassword("");
   };
 
   const handleFormSubmit = async () => {

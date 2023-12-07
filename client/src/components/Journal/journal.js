@@ -45,6 +45,7 @@ const NewEntry= () => {
     }catch(error){
       console.error('error saving',error.message);
     }
+    window.location.href = '/journal';
   };
 
   return (
