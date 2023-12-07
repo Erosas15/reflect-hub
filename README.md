@@ -22,6 +22,8 @@ The command to start the application varies depending on your operating system. 
 
 Run: `npm run start`
 
+If you prefer to run components individually for testing, see below.
+
 ### To Run the Server
 
 Execute: `npm run start-server`
@@ -32,7 +34,7 @@ Note: If you make changes to the server-side code, rerun the npm function.
 
 Execute: `npm run start-client`
 
-## To Install All Dependencies
+### To Install All Dependencies
 
 Run: `npm run install-deps`
 
