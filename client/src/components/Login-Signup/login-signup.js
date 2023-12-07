@@ -37,7 +37,7 @@ const LoginSignup = () => {
           
                     // Save user.uid separately for future usage
                     localStorage.setItem("userID", userId);
-                    window.location.href = "journal";
+                    window.location.href = "/";
                   } else {
                     // Handle unsuccessful login
                     console.error(response.data.error);
