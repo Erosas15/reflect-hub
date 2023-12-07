@@ -119,3 +119,23 @@
   font-size: 18px;
   line-height: 1.6;
 }
+
+.back-button-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.back-button {
+  background-color: #AEDFF7;
+  color: black;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
