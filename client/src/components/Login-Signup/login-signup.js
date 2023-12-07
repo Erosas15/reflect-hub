@@ -65,10 +65,25 @@ const LoginSignup = () => {
         } else {
           // Handle unsuccessful signup
           console.error(response.data.error);
+          alert("An error occurred during sign-up. Please try again.");
         }
       }
     } catch (error) {
       console.error("error during submission", error.message);
+      
+      if (error.response && error.response.data) {
+        if (error.response.data.error === "Incorrect email or password") {
+          alert("Incorrect email or password. Please try again.");
+        } else if (error.response.data.error === "Not a valid email") {
+          alert("Invalid email entered. Please try again.");
+        } else if (error.response.data.error === "Too many sign-in attempts") {
+          alert("You have entered incorrect credentials too many times. Please try again later.")
+        }  else {
+          alert("An error occurred during login. Please try again.");
+        }
+      } else {
+        alert("An error occurred during login. Please try again.");
+      }
     }
   };
 

@@ -22,6 +22,31 @@ const handleSignIn = async (email, password) => {
     };
   } catch (error) {
     console.error("Error signing in:", error.message);
+    console.error("error.code", error.code)
+
+    //check if the error is due to entering a non-valid email
+    if (error.code === "auth/invalid-email") {
+      return {
+        success: false,
+        error: "Not a valid email",
+      };
+    }
+
+    //check if the error is due to an incorrect credential
+    if (error.code === "auth/invalid-credential") {
+      return {
+        success: false,
+        error: "Incorrect email or password",
+      };
+    }
+
+    //check if the error is because the user has signed in too many times
+    if (error.code === "auth/too-many-requests") {
+      return {
+        success: false,
+        error: "Too many sign-in attempts",
+      };
+    }
 
     // Return an object with success as false and the error message
     return {
