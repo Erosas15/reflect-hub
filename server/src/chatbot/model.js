@@ -4,7 +4,7 @@ const { OpenAIEmbeddings } = require("langchain/embeddings/openai");
 const { OpenAI } = require("langchain/llms/openai");
 const path = require("path");
 const { openAIConfig } = require("../../config.json");
-const createRandomCSV = require("@src/utils/randomCSVGenerator");
+const createRandomCSV = require("../utils/randomCSVGenerator");
 
 const initializeChatBot = async () => {
   const inputCSVPath = path.join(__dirname, "..", "utils", "train.csv");
@@ -19,6 +19,7 @@ const initializeChatBot = async () => {
     docs,
     new OpenAIEmbeddings({
       openAIApiKey: openAIConfig.apiKey,
+      modelName: "text-embedding-ada-002"
     })
   );
 
@@ -29,8 +30,10 @@ const initializeChatBot = async () => {
     openAIApiKey: openAIConfig.apiKey,
     modelName: "gpt-3.5-turbo-instruct",
   });
+  
 
   return { model, vectorStoreRetriever };
+
 };
 
 // Initialize OpenAI and export the model and vectorStoreRetriever

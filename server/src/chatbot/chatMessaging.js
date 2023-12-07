@@ -11,7 +11,7 @@ const { StringOutputParser } = require("langchain/schema/output_parser");
 const { formatDocumentsAsString } = require("langchain/util/document");
 const initializeChatBot = require("./model");
 
-const handleChatMessage = async (input, memory) => {
+const handleChatMessage = async (input) => {
   const { model, vectorStoreRetriever } = await initializeChatBot();
 
   // Create a system & human prompt for the chat model
@@ -37,7 +37,15 @@ const handleChatMessage = async (input, memory) => {
 
   const answer = await chain.invoke(input);
 
-  return answer;
+
+  const indexOfColon = answer.indexOf(':');
+  if(indexOfColon == -1){
+    return answer;
+  }
+
+  const modifiedAnswer = answer.slice(indexOfColon + 1).trim();
+
+  return modifiedAnswer;
 };
 
 module.exports = handleChatMessage;
