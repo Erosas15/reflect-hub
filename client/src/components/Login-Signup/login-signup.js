@@ -26,21 +26,40 @@ const LoginSignup = () => {
     
 
             if (isLogin){
-                const response = await axios.post('http://localhost:3001/auth/api/signin',
-                {email,password}, config);
-
-                sessionStorage.setItem('user', JSON.stringify(response.data.user));
-
-                console.log(response.data);
-
-                window.location.href = '/';
+                const response = await axios.post(
+                    "http://localhost:3001/auth/api/signin",
+                    { email, password },
+                    config
+                  );
+          
+                  if (response.data.success) {
+                    const { userId } = response.data;
+          
+                    // Save user.uid separately for future usage
+                    localStorage.setItem("userID", userId);
+                    window.location.href = "journal";
+                  } else {
+                    // Handle unsuccessful login
+                    console.error(response.data.error);
+                  }
             }else {
-                const response = await axios.post('http://localhost:3001/auth/api/signup',
-                {name, email, password},config);
-
-                console.log(response.data);
-                setIsLogin(!isLogin);
-                window.location.href = '/';
+                const response = await axios.post(
+                    "http://localhost:3001/auth/api/signup",
+                    { name, email, password },
+                    config
+                  );
+          
+                  if (response.data.success) {
+                    const { userId } = response.data;
+          
+                    // Save user ID separately for future usage
+                    localStorage.setItem("userID", userId);
+          
+                    window.location.href = "/";
+                 } else {
+                    // Handle unsuccessful signup
+                    console.error(response.data.error);
+                  }      
             }
         } catch (error){
             console.error('error during submission',error.message);
