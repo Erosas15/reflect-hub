@@ -27,7 +27,7 @@ const SupportGroup = ({ isSignedIn, onSignInClick, onSignOutClick }) => {
     // Call fetchMessages when the component mounts
     fetchMessages();
     // Set up an interval to fetch messages every 10 seconds
-    const intervalId = setInterval(fetchMessages, 100);
+    const intervalId = setInterval(fetchMessages, 10000);
     // Clean up the interval when the component unmounts
     return () => clearInterval(intervalId);
 
