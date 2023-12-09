@@ -21,10 +21,12 @@ The code on this GitHub repository won't execute independently, as it lacks the 
 1. **Create a Configuration File:** Start by creating a json file named `config.json` in the server directory.
 
 2. **Firebase API Configuration:**
+
    - Add a json object named "firebaseAPIConfig" to your `config.json`.
    - Reach out to us to get the JSON object tailored for our Firebase Database.
 
 3. **Firebase Service Configuration:**
+
    - Introduce another JSON object called "firebaseServiceConfig" to `config.json`.
    - Once again, reach out to us for the specific JSON object linked to the service-account on Firebase.
 
@@ -32,7 +34,7 @@ The code on this GitHub repository won't execute independently, as it lacks the 
    - To get the OpenAI config and make your chatbot run smoothly, create a third JSON object named "OpenAIConfig" in `config.json`.
    - Don't hesitate to ask us for this JSON object—your key to unleashing the power of OpenAI.
 
-** Example `config.json` **
+**Example `config.json`**
 
 ```json
 {
@@ -100,3 +102,14 @@ The application identifies keywords from the daily journal and groups users faci
 ### Chat
 
 Users can engage in conversations with a GPT chatbot tailored with mental health information and get mental health information and advice from a model similar to a trained psychologist.
+
+## Sources:
+
+**Training Data**
+Mikedelong. (2023, December 4). Visualize therapy responses. Kaggle. https://www.kaggle.com/code/mikedelong/visualize-therapy-responses/notebook
+
+**Langchain Documentation:**
+Vector Stores. 🦜️🔗 Langchain. (n.d.). https://js.langchain.com/docs/modules/data_connection/vectorstores/
+
+**Firebase Documentation:**
+Google. (n.d.). Build documentation&nbsp; |&nbsp; firebase documentation. Google. https://firebase.google.com/docs/build
